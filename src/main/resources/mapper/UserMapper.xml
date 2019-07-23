@@ -4,5 +4,26 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.seu.dao.UserDao">
-
+    <insert id="persist" useGeneratedKeys="true" keyProperty="id">
+        insert into user (name ,password,email)values (#{name},#{password},#{email});
+    </insert>
+    <update id="update">
+        update user set
+        <trim suffixOverrides=",">
+            <if test="name!=null">
+                name = #{name},
+            </if>
+            <if test="password!=null">
+                password = #{password},
+            </if>
+            <if test="email!=null">
+                email = #{email},
+            </if>
+            <if test="authority!=null">
+                authority = #{level},
+            </if>
+            update_time = now(),
+        </trim>
+        where id = #{id};
+    </update>
 </mapper>
