@@ -5,8 +5,9 @@ public enum AuthorityEnum {
 
     MEMBER(0),
 
-    ADMIN(1);
+    ADMIN(1),
 
+    VISITOR(2);
     int value;
 
     AuthorityEnum(int value){ this.value = value; }
