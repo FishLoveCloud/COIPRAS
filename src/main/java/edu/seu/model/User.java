@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 /**
  * @Author :lec
- * @Date :2019-5-21 16:30
+ * @Date :2019-7-24 16:30
  */
 @Getter(value = AccessLevel.PUBLIC)
 @Setter(value = AccessLevel.PUBLIC)
@@ -29,6 +29,11 @@ public class User {
     private String sex;
     private String company;
     private String address;
+    private Integer active;
+
+    /**
+     * 0:未激活 ，1：激活
+     */
 
     public User() {
 
