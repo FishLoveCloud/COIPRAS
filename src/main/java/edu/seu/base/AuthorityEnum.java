@@ -3,11 +3,11 @@ package edu.seu.base;
 
 public enum AuthorityEnum {
 
-    MEMBER(0),
+    VISITOR(0),
 
-    ADMIN(1),
+    MEMBER(1),
 
-    VISITOR(2);
+    ADMIN(2);
     int value;
 
     AuthorityEnum(int value){ this.value = value; }
