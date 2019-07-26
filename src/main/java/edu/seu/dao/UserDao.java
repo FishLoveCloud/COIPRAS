@@ -15,7 +15,7 @@ import java.util.List;
 @Mapper
 public interface UserDao {
       String TABLE_NAME = "user";
-      String SELECT_FIELDS = "id,name,password,email,level,phone,sex,company,address, create_time,update_time";
+      String SELECT_FIELDS = "id,name,password,email,level,phone,sex,company,address,active,create_time,update_time";
 
       Integer persist(User user);
       Integer update(User user);
