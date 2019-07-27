@@ -13,7 +13,7 @@ import java.util.List;
  * @Date: 2019-05-21 16:30
  */
 @Mapper
-public interface UserDao {
+public interface UserDAO {
       String TABLE_NAME = "user";
       String SELECT_FIELDS = "id,name,password,email,level,phone,sex,company,address,active,create_time,update_time";
 

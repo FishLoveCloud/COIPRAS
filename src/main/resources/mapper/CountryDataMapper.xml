@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.seu.dao.CountryDataDAO">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into country_data(country_eng,country,WBCode,year,political_risk,economic_risk,social_risk,average_risk,risk_level)
+        values (#{country_eng},#{country},#{WBCode},#{year},#{political_risk},#{economic_risk},#{social_risk},#{average_risk},#{risk_level});
+    </insert>
+    <update id="update">
+        update country_data set
+        <trim suffixOverrides=",">
+            <if test="country_eng!=null">
+                country_eng = #{country_eng}
+            </if>
+            <if test="countryData!=null">
+                country = #{country}
+            </if>
+            <if test="WBCode!=null">
+                WBCode = #{WBCode}
+            </if>
+            <if test="year!=null">
+                year = #{year}
+            </if>
+            <if test="political_risk!=null">
+                political_risk = #{political_risk}
+            </if>
+            <if test="economic_risk!=null">
+                economic_risk = #{economic_risk}
+            </if>
+            <if test="social_risk!=null">
+                social_risk = #{social_risk}
+            </if>
+            <if test="average_risk!=null">
+                average_risk = #{average_risk}
+            </if>
+            <if test="risk_level!=null">
+                risk_level = #{risk_level}
+            </if>
+        </trim>
+    </update>
+</mapper>
