@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.seu.dao.CountryDao">
+    <resultMap id="CountryResultMap" type="edu.seu.model.Country">
+        <id column="id" property="id"/>
+        <result column="countryData" property="countryData" javaType="edu.seu.model.CountryData" typeHandler="edu.seu.cpopirs_util.ObjectTypeHandler"/>
+    </resultMap>
+      <insert id="insertCountry" useGeneratedKeys="true" keyProperty="id">
+          insert into countrytesttwo
+          (countryData,year,country,wb_code)
+          values (#{countryRisk,typeHandler=edu.seu.cpopirs_util.ObjectTypeHandler},#{year},#{countryName},#{WBCode})
+      </insert>
+</mapper>
