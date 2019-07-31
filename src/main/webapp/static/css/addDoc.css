@@ -1,0 +1,14 @@
+
+.add-body{
+    margin: 40px 0px 0px 0px;
+}
+
+scan{
+    color: red;
+}
+
+.panel-doc{
+    display: flex;
+    justify-content:center;
+    align-items:Center;
+}
