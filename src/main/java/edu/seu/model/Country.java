@@ -7,6 +7,7 @@ public class Country {
     private String countryName;
     private String WBCode;
     private CountryRisk countryRisk;
+    private String riskLevel;
     public Integer getId() {
         return id;
     }
@@ -25,6 +26,7 @@ public class Country {
         setWBCode();
         setCountryName();
         setCountryRisk();
+        setRiskLevel();
     }
     public void setYear()
     {
@@ -41,9 +43,9 @@ public class Country {
         countryRisk.setPoliticalRisk(countryData.getPoliticalRisk());
         countryRisk.setEconomicRisk(countryData.getEconomicRisk());
         countryRisk.setAverageRisk(countryData.getAverageRisk());
-        countryRisk.setRiskLevel(countryData.getRiskLevel());
     }
     public void setWBCode(){
         this.WBCode = countryData.getWBcode();
     }
+    public void setRiskLevel(){this.riskLevel = countryData.getRiskLevel();}
 }

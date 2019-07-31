@@ -13,9 +13,9 @@ import java.util.List;
 public interface  CountryDataDAO {
 
     String TABLE_NAME = "countrydata";
-   // String SEARCH_FIELD = "id，country_eng,country,WBCode,year,political_risk,economic_risk,social_risk,average_risk,risk_level";
+    String SEARCH_FIELD = "id，country_eng,country,WBCode,year,political_risk,economic_risk,social_risk,average_risk,risk_level";
 
-    public Integer insert(@Param("countryData")CountryData countryData);
+    public  Integer insert(CountryData countryData);
 
     public Integer update(@Param("countryData")CountryData countryData);
 

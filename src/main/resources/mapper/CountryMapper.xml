@@ -7,7 +7,7 @@
     </resultMap>
       <insert id="insertCountry" useGeneratedKeys="true" keyProperty="id">
           insert into countrytesttwo
-          (countryData,year,country,wb_code)
-          values (#{countryRisk,typeHandler=edu.seu.cpopirs_util.ObjectTypeHandler},#{year},#{countryName},#{WBCode})
+          (countryData,year,country,wb_code,risk_level)
+          values (#{countryRisk,typeHandler=edu.seu.cpopirs_util.ObjectTypeHandler},#{year},#{countryName},#{WBCode},#{riskLevel})
       </insert>
 </mapper>

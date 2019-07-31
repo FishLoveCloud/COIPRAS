@@ -5,7 +5,6 @@ public class CountryRisk {
     private Double economicRisk;       //经济风险
     private Double socialRisk;      //社会风险
     private Double averageRisk;     //综合风险
-    private String riskLevel;   //风险等级
 
 
     public Double getPoliticalRisk() {
@@ -40,11 +39,4 @@ public class CountryRisk {
         this.averageRisk = averageRisk;
     }
 
-    public String getRiskLevel() {
-        return riskLevel;
-    }
-
-    public void setRiskLevel(String riskLevel) {
-        this.riskLevel = riskLevel;
-    }
 }

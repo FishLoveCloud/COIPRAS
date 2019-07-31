@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/addController/")
+@RequestMapping("/addCountry")
 public class AddController {
     private static Log log = LogFactory.getLog(AddController.class);
     @Autowired
@@ -42,7 +42,7 @@ public class AddController {
             String Msg ="批量导入EXCEL失败！";
             request.getSession().setAttribute("msg",Msg);
         }
-        return "Customer/addCustomer";
+        return "/index";
     }
 
 }

@@ -26,7 +26,7 @@
 
 <body class="login-bg">
 <div class="login layui-anim layui-anim-up">
-    <div class="message">COIPAS - 登录</div>
+    <div class="message">COIPRAS - 登录</div>
     <div id="darkbannerwrap"></div>
     <form class="layui-form" action="" method="post">
         <input type="text" name="nameEmail" id="nameEmail" placeholder="请输入用户名/邮箱"

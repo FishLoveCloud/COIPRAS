@@ -16,7 +16,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <body>
 <div><font color="bule">批量导入国家数据</font></div>o
-<form action="addController/batchimport" method="post" enctype="multipart/form-data" onsubmit="return check();">
+<form action="addCountry/batchimport" method="post" enctype="multipart/form-data" onsubmit="return check();">
     <div style="margin: 30px;"><input id="excel_file" type="file" name="filename" accept="xlsx" size="80"/>
         <input id="excel_button" type="submit" value="导入Excel"/></div>
     <font id="importMsg" color="red"><%=importMsg%></font><input type="hidden"/>

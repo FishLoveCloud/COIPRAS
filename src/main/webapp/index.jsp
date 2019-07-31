@@ -56,7 +56,8 @@
             </li>
             <li class="layui-nav-item"><a href="javascript:;" onclick="doClickHorizontalMenu('false', 'true');">管理员</a>
             </li>
-            <li class="layui-nav-item"><a href="${ctx}/docOperation">帮助</a></li>
+            <li class="layui-nav-item"><a href="${ctx}/">帮助</a></li>index
+            <li class="layui-nav-item"><a href="${ctx}/addCountry">插入</a></li>
             <!--禁止删除-->
         </ul>
 
