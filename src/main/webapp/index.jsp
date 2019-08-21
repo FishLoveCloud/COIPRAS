@@ -56,8 +56,8 @@
             </li>
             <li class="layui-nav-item"><a href="javascript:;" onclick="doClickHorizontalMenu('false', 'true');">管理员</a>
             </li>
-            <li class="layui-nav-item"><a href="${ctx}/">帮助</a></li>index
-            <li class="layui-nav-item"><a href="${ctx}/addCountry">插入</a></li>
+            <li class="layui-nav-item"><a href="${ctx}/" onclick="alert(help);">帮助</a></li>index
+            <li class="layui-nav-item"><a href="${ctx}/addCountry">上传</a></li>
             <!--禁止删除-->
         </ul>
 
@@ -88,7 +88,7 @@
                     <select id="time-select" class="multi-dropdown" multiple="multiple">
                         <option value="">选择时间</option>
                         <%
-                            for (int i = 2019; i >= 2000; i--) {
+                            for (int i = 2017; i >= 2015; i--) {
                         %>
                                 <option value="<%=i%>"><%=i%></option>
                         <%
@@ -289,7 +289,7 @@
     <div class="layui-body left-nav-body">
         <div class="blog-main" style="margin: 150px 0 0 0">
             <!--左边栏目-->
-
+            <div id="information" style="float:right;height:370px;width:300px;"></div>
             <div id="chartContainer" style="height: 370px; width: 50%;margin: auto auto;"></div>
             <div><span class="share">立即分享</span></div>
         </div>
@@ -332,8 +332,14 @@
     var compare = -1;
     //1是柱状图 2是折线图 3是条形图 4是雷达图
     var format = -1;
-
-    var limit = 3, num = 0;
+    var descripMap = {
+        'S':'风险发生将导致中国境外产业园区建设目标失败',
+        'H':'风险发生将导致中国境外产业园区建设目标严重受损，造成重大影响',
+        'M':'风险发生对中国境外产业园区建设目标造成中度影响，但仍能部分实现',
+        'L':'风险发生对中国境外产业园区建设部分目标实现产生影响，但不影响整体目标',
+        'N':'风险发生对中国境外产业园区建设目标造成的影响可以忽略，且不影响整体目标',
+    };
+    var help = "";
 
     var authEnum = ["游客可见", "注册用户可见", "VIP用户可见", "管理员可见"];
     var activeEnum = ["通过", "待审核", "未通过"];
@@ -418,7 +424,7 @@
                 return false;
             }
 
-            var page = "#";
+            var page = '${ctx}/country/search';
             var time = [];
             var country = [];
             times = document.getElementById('time-select');
@@ -443,36 +449,91 @@
                 }
             } else if (compare == 1){
                 if (time.length > 1) {
-                    alert('选择国家数目超过限制!');
+                    alert('选择年份超过限制!');
                     return false;
                 }
             }
 
-            var data = {'time': time, 'countries':country};
-            console.log(data);
-            console.log(data);
+            var data = {'type':compare,
+                         'time': JSON.stringify(time),
+                         'countries':JSON.stringify(country)
+                        };
             $.ajax({
                 url: page,
-                method: 'post',
-                data: {'type': format, 'data': data},
+                type: 'post',
+                //contextType:'application/json',
+                data: data,
                 success: function (result) {
-                    data0 = {'type': 0,
-                        'time': [2017,2018,2019],
-                        'country': "阿富汗",
-                        'data':[[1.1,1.3,1.5,1.2],[1.7,2.3,1.1,2.3],[1.2,1.0,1.8,1.7]]};
-                    data1 = {'type': 1,
-                            'time': 2019,
-                            'country': ['USA','UK','China'],
-                            'data':[[2.1,2.3,2.1,2.6],[2.1,2.3,2.1,2.6],[2.1,2.3,2.1,2.6]]};
-                    base = 0;
-                    if (format == 1){
-                        base = 0;
-                    } else {
-                        base = 1;
+                    $('#information').html("");
+                    console.log(result);
+                    jsonData = eval('(' + result + ')');
+                    // data0 = {'type': 0,
+                    //     'time': [2017,2018,2019],
+                    //     'country': "阿富汗",
+                    //     'data':[[1.1,1.3,1.5,1.2],[1.7,2.3,1.1,2.3],[1.2,1.0,1.8,1.7]]};
+                    // data1 = {'type': 1,
+                    //         'time': 2019,
+                    //         'country': ['USA','UK','China'],
+                    //         'data':[[2.1,2.3,2.1,2.6],[2.1,2.3,2.1,2.6],[2.1,2.3,2.1,2.6]]};
+                    //         'level':'l'
+                    //         'auth':0:游客 1:注册用户
+                    var type = jsonData['type'];
+                    var auth = jsonData['auth'];
+                    console.log( auth == "0");
+                    console.log( auth == "1");
+                    if (type == 0) {
+                        var yearLen = jsonData['time'].length;
+                        if (auth == "0") {
+                            if (yearLen > 2) {
+                                alert("您为游客，最多可选择的年份数量为2，请重新选择！");
+                                return;
+                            }
+                        } else if (auth == "1") {
+                            if (yearLen > 5) {
+                                alert("您为注册用户，最多可选择的年份数量为2，请重新选择！");
+                                return;
+                            }
+                        }
+                    } else if (type == 1) {
+                        var countryLen = jsonData['country'].length;
+                        if (auth == "0") {
+                            if (countryLen > 3) {
+                                alert("您为游客，最多可选择的国家数量为3，请重新选择！");
+                                return;
+                            }
+                        } else if (auth == "1") {
+                            if (countryLen > 10) {
+                                alert("您为注册用户，最多可选择的国家数量为10，请重新选择！");
+                                return;
+                            }
+                        }
+
                     }
-                    if (base == 0)
-                    showBarChart(data0);
-                    else showLineChart(data0);
+
+                    if (type == 0) {
+                        if (format == 1) {
+                            showBarChart(jsonData);
+                        } else if (format == 2) {
+                            showLineChart(jsonData);
+                        }
+                    } else {
+                        showBarChart(jsonData);
+                    }
+
+                    var flag = false;
+                    if (jsonData['type'] == 0 && jsonData['time'].length == 1) flag = true;
+                    if (jsonData['type'] == 1 && jsonData['country'].length == 1) flag = true;
+                    if (flag) {
+                        var innerHTML = "                <div style=\"height:40px;width:200px;text-align: center;\">综合风险指数</div>\n" +
+                            "                <div style=\"height:30px;margin-bottom: 20px;width:200px;background-color:lightskyblue;text-align: center;\">"+jsonData['data'][0][3]+"(数值)</div>\n" +
+                            "                <div style=\"height:30px;margin-bottom: 20px;width:200px;background-color:lightskyblue;text-align: center\">"+jsonData['level'][0]+"(等级)</div>\n" +
+                            "                <div style=\"width:200px;background-color:lightskyblue;text-align: center\">"+descripMap[jsonData['level'][0]]+"</div>";
+                        console.log(innerHTML);
+                        $('#information').html(innerHTML);
+                    }
+                },
+                error  : function () {
+                    alert('请求失败')
                 }
             });
             return false;

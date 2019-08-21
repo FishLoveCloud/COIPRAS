@@ -19,7 +19,7 @@
                 WBCode = #{WBCode}
             </if>
             <if test="year!=null">
-                year = #{2016}
+                year = #{year}
             </if>
             <if test="politicalRisk!=null">
                 political_risk = #{politicalRisk}

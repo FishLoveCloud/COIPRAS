@@ -37,8 +37,8 @@ public class CountryDataService {
 
     private void checkAuthority() throws COIPRASExceptions {
         User user = hostHolder.getUser();
-        if (user.getLevel() != 2) {
-            throw new COIPRASExceptions(CodeEnum.DOCUMENT_ERROR, "只有管理员可以上传文档");
+        if (user.getLevel() != 1) {
+            throw new COIPRASExceptions(CodeEnum.DOCUMENT_ERROR, "只有管理员可以上传数据");
         }
     }
 
@@ -57,7 +57,7 @@ public class CountryDataService {
         }
     }
 
-    private void checkCountryYear(String year) throws COIPRASExceptions {
+    public List<CountryData> checkCountryYear(String year) throws COIPRASExceptions {
         if (year == null) {
             throw new COIPRASExceptions(CodeEnum.DOCUMENT_ERROR, "参数不能为空");
         }
@@ -66,10 +66,10 @@ public class CountryDataService {
             throw new COIPRASExceptions(CodeEnum.DOCUMENT_ERROR, "没有该年数据");
 
         }
-
+        return countryDataList;
     }
 
-    private void CheckCountryName(String name) throws COIPRASExceptions {
+    public void CheckCountryName(String name) throws COIPRASExceptions {
         if (name == null) {
             throw new COIPRASExceptions(CodeEnum.DOCUMENT_ERROR, "参数不能为空");
         }
@@ -80,35 +80,33 @@ public class CountryDataService {
         }
     }
 
-    private void CheckCountryNameAndYear(String name, String year) throws COIPRASExceptions {
-        if (name == null || year == null) {
+    public CountryData CheckCountryNameAndYear(String WBCode, String year) throws COIPRASExceptions {
+        if (WBCode == null || year == null) {
             throw new COIPRASExceptions(CodeEnum.DOCUMENT_ERROR, "参数不能为空");
-
         }
-        CountryData countryData = countryDataDAO.selectByYearAndCountry(year, name);
+        CountryData countryData = countryDataDAO.selectByYearAndCountryCode(WBCode, year);
         if (countryData == null) {
             throw new COIPRASExceptions(CodeEnum.DOCUMENT_ERROR, "没有条件要求数据");
-
         }
+        return countryData;
     }
 
-    public boolean batchImport(String name, MultipartFile file) {
+    public boolean batchImport(String name, MultipartFile file) throws COIPRASExceptions {
         boolean b = false;
+       // checkAuthority();
         ProcessCSV processCSV = new ProcessCSV();
         List<CountryData> countryDataList = processCSV.getExcelInfo(name, file);
         if (countryDataList != null) {
             b = true;
         }
         for (CountryData countryData : countryDataList) {
-              countryDataDAO.insert(countryData);
+            countryDataDAO.insert(countryData);
 //            Country country = new Country();
 //            country.setCountryData(countryData);
 //            countryDao.insertCountry(country);
-              System.out.println(countryData);
+            System.out.println(countryData);
         }
         System.out.println("Success!");
         return b;
     }
-
-
 }

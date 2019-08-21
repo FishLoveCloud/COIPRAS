@@ -171,6 +171,7 @@ public class ProcessCSV {
                         if (c == 0) {
                             countryInfo.setCountry(cell.getStringCellValue());
                         } else if (c == 1) {
+                            cell.setCellType(Cell.CELL_TYPE_STRING);
                             countryInfo.setCountryEng(cell.getStringCellValue());
                         } else if (c == 2) {
                             countryInfo.setWBcode(cell.getStringCellValue());
@@ -189,6 +190,7 @@ public class ProcessCSV {
                     }
                 }
                 //添加客户
+               // System.out.println(countryInfo.getCountryEng());
                 countryList.add(countryInfo);
             }
         }

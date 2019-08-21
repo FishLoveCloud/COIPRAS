@@ -15,7 +15,6 @@ public class CountryData {
     private Double socialRisk;      //社会风险
     private Double averageRisk;     //综合风险
     private String riskLevel;   //风险等级
-
     public CountryData() {
 
     }
@@ -93,13 +92,14 @@ public class CountryData {
     }
 
     public String getRiskLevel() {
-        return riskLevel;
+        return "'"+riskLevel+"'";
     }
 
     public void setRiskLevel(String riskLevel) {
         this.riskLevel = riskLevel;
     }
 
+    public String getCountryRisk(){return String.format("[%s,%s,%s,%s]",politicalRisk+"",economicRisk+"",socialRisk+"",averageRisk+"");}
     @Override
     public String toString() {
         return "User{" +
