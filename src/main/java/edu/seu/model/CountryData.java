@@ -91,9 +91,7 @@ public class CountryData {
         this.averageRisk = averageRisk;
     }
 
-    public String getRiskLevel() {
-        return "'"+riskLevel+"'";
-    }
+    public String getRiskLevel() { return riskLevel; }
 
     public void setRiskLevel(String riskLevel) {
         this.riskLevel = riskLevel;

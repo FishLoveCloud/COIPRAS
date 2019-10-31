@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; Charset=gb2312">
     <meta http-equiv="Content-Language" content="zh-CN">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <title>COIPRAS</title>
+    <title>OICPRAS</title>
     <link rel="stylesheet" href="./static/plug/layui/css/layui.css">
     <%--网页图标--%>
     <link rel="shortcut icon" href="static/images/COIPIB.png" type="image/x-icon">
@@ -29,7 +29,7 @@
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header position: absolute;">
         <a href="${ctx}/index">
-            <div class="layui-logo doc-logo" style="font-weight: bold">COIPRAS</div>
+            <div class="layui-logo doc-logo" style="font-weight: bold">OICPRAS</div>
         </a>
         <ul class="layui-nav layui-layout-left small-head-nav-left">
             <li class="layui-nav-item"><a href="javascript:;"></a></li>
@@ -325,6 +325,7 @@
     userInfo.email = "${user.email}";
     userInfo.level = "${user.level}";
     userInfo.active = "${user.active}";
+    // alert(userInfo.id);
 
     var cmpSelect = $('#compare');
     var formatSect = $('#format');
@@ -339,7 +340,11 @@
         'L':'风险发生对中国境外产业园区建设部分目标实现产生影响，但不影响整体目标',
         'N':'风险发生对中国境外产业园区建设目标造成的影响可以忽略，且不影响整体目标',
     };
-    var help = "";
+    var help = "软件名称：Web境外国际合作园区风险评估软件1.0\n" +
+        "软件版本号：V1.0\n" +
+        "开发机构：东南大学\n" +
+        "开发人员：赵四东、王兴平、王慧、张蒙\n" +
+        "编程人员：戚晓芳、刘恩赐、徐成龙、贺黎、喻学乐\n";
 
     var authEnum = ["游客可见", "注册用户可见", "VIP用户可见", "管理员可见"];
     var activeEnum = ["通过", "待审核", "未通过"];
