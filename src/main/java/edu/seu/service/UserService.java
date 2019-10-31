@@ -129,7 +129,7 @@ public class UserService {
     public Map<String, Object> buildEmailCaptcha(String email, String emailCaptcha, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
         map.put("to", email);
-        map.put("subject", "COIPIB-验证码");
+        map.put("subject", "OICPRAS-验证码");
         String text = "<html><p><h3>验证码：" + emailCaptcha + "</h3></p></html>";
         map.put("text", text);
         return map;
